@@ -24,16 +24,18 @@ class SwiftModelGenerator
 	text_result
   end
 
-  def infer_default_value(name) 
-	return "" if name.length == 0 || name[-1] == "?"
+  def infer_default_value(typename) 
+	return "" if typename.length == 0 || typename[-1] == "?"
 
-	case name
+	case typename
 	when "Int"
 	  " = 0"
 	when "String"
 	  " = \"\""
 	when "Double"
+	  " = 0.0"
 	when "Float"
+	  " = 0.0"
 	when "CGFloat"
 	  " = 0.0"
 	when "Bool"
@@ -54,7 +56,7 @@ class SwiftModelGenerator
 	text_result << "\n"
 	text_result << "class #{name.capitalize}: Object, Mappable {\n"
 
-	json.each_pair { |k,v| text_result << "  @objc dynamic var #{k}: #{v}#{infer_default_value(k)}\n" }
+	json.each_pair { |k,v| text_result << "  @objc dynamic var #{k}: #{v}#{infer_default_value(v)}\n" }
 
 	text_result << "\n"
 

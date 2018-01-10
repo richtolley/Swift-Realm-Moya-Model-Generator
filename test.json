@@ -10,7 +10,8 @@
 		"id" : "Int",
 		"name" : "String",
 		"color" : "String",
-		"age" : "Double"
+		"age" : "Double",
+		"neutered": "Bool" 
 	},
 
 	"Kennel" : {
