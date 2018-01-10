@@ -1,0 +1,15 @@
+{
+	"cat" : {
+		"id" : 2,
+		"name" : "fred",
+		"color" : "blue",
+		"age" : 45
+	},
+
+	"dog" : {
+		"id" : 2,
+		"name" : "albert",
+		"color" : "blue",
+		"age" : 4589
+	}
+}
