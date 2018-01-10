@@ -46,6 +46,8 @@ To create the model objects, simply run:
 $ ruby generator.rb $PATH_TO_JSON_SPEC_FILE
 ```
 
+The generated files should appear in the Results folder
+
 ## TODO 
 - make Realm/Moya library inclusion optional
 - improve default type inference
