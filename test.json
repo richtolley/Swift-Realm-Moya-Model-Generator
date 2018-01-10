@@ -1,15 +1,26 @@
 {
-	"cat" : {
-		"id" : 2,
-		"name" : "fred",
-		"color" : "blue",
-		"age" : 45
+	"Cat" : {
+		"id" : "Int",
+		"name" : "String",
+		"color" : "String?",
+		"age" : "Int"
 	},
 
-	"dog" : {
-		"id" : 2,
-		"name" : "albert",
-		"color" : "blue",
-		"age" : 4589
+	"Dog" : {
+		"id" : "Int",
+		"name" : "String",
+		"color" : "String",
+		"age" : "Double"
+	},
+
+	"Kennel" : {
+		"id" : "Int",
+		"name": "String",
+		"dogs": "[Dog]?"
+	},
+	"Cattery" : {
+		"id" : "Int",
+		"name": "String",
+		"cats": "[Cat]?"
 	}
 }
