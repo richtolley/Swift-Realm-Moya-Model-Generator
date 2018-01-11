@@ -16,7 +16,6 @@ Given an input json file, the script creates a series of model files in the 'Res
     "color" : "String?",
     "age" : "Int"
   },
-
   "Dog" : {
     "id" : "Int",
     "name" : "String",
