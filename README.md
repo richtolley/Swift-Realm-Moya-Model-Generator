@@ -5,35 +5,75 @@ Simple script for automating the creation of Swift model layer classes using [Mo
 However, neither Realm nor Moya provide an easy way of automatically generating model classes. This script takes a json file specifying entity names and types, and generates a series of pure Swift model classes. It is very bare-bones but may be extended if it proves useful.
 
 ## Description
-Given an input json file, the script creates a series of model files in the 'Results' directory. The file should contain a root-level JSON dictionary, each sub-dictionary of which describes a model object. Sub dictionaries specify type names as keys and types as values. 
+Given an input json file, the script creates a series of model files in the 'Results' directory. The file should contain a root-level JSON dictionary, each sub-dictionary of which describes a model object. Sub dictionaries specify type names as keys and types as values:
 
 #### test.json:
 ```sh
 {
-	"Cat" : {
-		"id" : "Int",
-		"name" : "String",
-		"color" : "String?",
-		"age" : "Int"
-	},
+  "Cat" : {
+    "id" : "Int",
+    "name" : "String",
+    "color" : "String?",
+    "age" : "Int"
+  },
 
-	"Dog" : {
-		"id" : "Int",
-		"name" : "String",
-		"color" : "String",
-		"age" : "Double"
-	},
+  "Dog" : {
+    "id" : "Int",
+    "name" : "String",
+    "color" : "String",
+    "age" : "Double"
+  },
+  "Kennel" : {
+    "id" : "Int",
+    "name": "String",
+    "dogs": "[Dog]?"
+  },
+  "Cattery" : {
+    "id" : "Int",
+    "name": "String",
+    "cats": "[Cat]?"
+  }
+}
+```
 
-	"Kennel" : {
-		"id" : "Int",
-		"name": "String",
-		"dogs": "[Dog]?"
-	},
-	"Cattery" : {
-		"id" : "Int",
-		"name": "String",
-		"cats": "[Cat]?"
-	}
+This produces 4 files - an example is:
+
+```
+import Foundation
+import ObjectMapper
+import Realm
+import RealmSwift
+
+class Cat: Object, Mappable {
+  @objc dynamic var id: Int = 0
+  @objc dynamic var name: String = ""
+  @objc dynamic var color: String?
+  @objc dynamic var age: Int = 0
+
+  required init?(map: Map) { super.init() }
+
+  required init() {
+    super.init()
+  }
+
+  required init(value: Any, schema: RLMSchema) {
+    super.init(value: value, schema: schema)
+  }
+
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
+    super.init(realm: realm, schema: schema)
+  }
+
+  override class func primaryKey() -> String? {
+    return "id"
+  }
+
+  func mapping(map: Map) {
+    id <- map["id"]
+    name <- map["name"]
+    color <- map["color"]
+    age <- map["age"]
+  }
 }
 ```
 
