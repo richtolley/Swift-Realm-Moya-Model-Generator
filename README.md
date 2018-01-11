@@ -8,7 +8,7 @@ However, neither Realm nor Moya provide an easy way of automatically generating 
 Given an input json file, the script creates a series of model files in the 'Results' directory. The file should contain a root-level JSON dictionary, each sub-dictionary of which describes a model object. Sub dictionaries specify type names as keys and types as values:
 
 #### test.json:
-```sh
+```json
 {
   "Cat" : {
     "id" : "Int",
@@ -37,7 +37,7 @@ Given an input json file, the script creates a series of model files in the 'Res
 
 This produces 4 files - an example is:
 
-```
+```swift
 import Foundation
 import ObjectMapper
 import Realm
